@@ -9,10 +9,15 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import android.os.Bundle;
+import android.os.StatFs;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.MemoryInfo;
+import java.io.File;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class echoes a string called from JavaScript.
