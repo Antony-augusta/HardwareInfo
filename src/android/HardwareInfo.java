@@ -18,6 +18,7 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import android.os.Build;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -43,6 +44,11 @@ public class HardwareInfo extends CordovaPlugin {
             this.RAMInfo(message, callbackContext);
             return true;
         }
+        else if (action.equals("DeviceInfo")) {
+            String message = args.getString(0);
+            this.DeviceInfo(message, callbackContext);
+            return true;
+        }
         return false;
     }
 
@@ -53,7 +59,26 @@ public class HardwareInfo extends CordovaPlugin {
             callbackContext.error("Expected one non-empty string argument.");
         }
     }
-    
+    private void DeviceInfo(String message, CallbackContext callbackContext){
+        String output;
+        try{
+            JSONObject jsonobj = new JSONObject();
+            jsonobj.put("SERIAL", "" + Build.SERIAL);
+            jsonobj.put("MODEL", "" + Build.MODEL);
+            jsonobj.put("ID", "" + Build.ID);
+            jsonobj.put("Manufacture", "" + Build.MANUFACTURER);
+            jsonobj.put("brand", "" + Build.BRAND);
+            jsonobj.put("type", "" + Build.TYPE);
+            jsonobj.put("HARDWARE", "" + Build.HARDWARE);
+            jsonobj.put("Boot", "" + Build.BOOTLOADER);
+
+            output = jsonobj.toString();
+        }
+        catch(Exception ex){
+            output = ex+"";
+        }
+        callbackContext.success(output);
+    }
     private void CPUInfo(String message, CallbackContext callbackContext) {
         ProcessBuilder processBuilder;
         String Holder = "";

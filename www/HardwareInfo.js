@@ -11,3 +11,7 @@ module.exports.CPUInfo = function (arg0, success, error) {
 module.exports.RAMInfo = function (arg0, success, error) {
     exec(success, error, 'HardwareInfo', 'RAMInfo', [arg0]);
 };
+
+module.exports.DeviceInfo = function (arg0, success, error) {
+    exec(success, error, 'HardwareInfo', 'DeviceInfo', [arg0]);
+};
