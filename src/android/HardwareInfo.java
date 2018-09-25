@@ -17,11 +17,11 @@ import android.app.ActivityManager.MemoryInfo;
  */
 public class HardwareInfo extends CordovaPlugin {
 
-    private Activity context;
+    private CustomActivity context;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        context = new Activity();
+        context = new CustomActivity();
 
         if (action.equals("coolMethod")) {
             String message = args.getString(0);
@@ -88,5 +88,12 @@ public class HardwareInfo extends CordovaPlugin {
         activityManager.getMemoryInfo(mi);
         long availableMegs = mi.availMem / 1048576L;
         callbackContext.success("" + availableMegs);
+    }
+}
+
+class CustomActivity extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 }
