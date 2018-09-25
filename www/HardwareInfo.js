@@ -7,3 +7,7 @@ module.exports.coolMethod = function (arg0, success, error) {
 module.exports.CPUInfo = function (arg0, success, error) {
     exec(success, error, 'HardwareInfo', 'CPUInfo', [arg0]);
 };
+
+module.exports.RAMInfo = function (arg0, success, error) {
+    exec(success, error, 'HardwareInfo', 'RAMInfo', [arg0]);
+};

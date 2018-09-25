@@ -8,6 +8,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
+import android.app.ActivityManager;
+import android.app.ActivityManager.MemoryInfo;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -24,6 +26,11 @@ public class HardwareInfo extends CordovaPlugin {
         else if (action.equals("CPUInfo")) {
             String message = args.getString(0);
             this.CPUInfo(message, callbackContext);
+            return true;
+        }
+        else if (action.equals("RAMInfo")) {
+            String message = args.getString(0);
+            this.RAMInfo(message, callbackContext);
             return true;
         }
         return false;
@@ -69,5 +76,12 @@ public class HardwareInfo extends CordovaPlugin {
         } else {
             callbackContext.error("Expected one non-empty string argument.");
         }
+    }
+    private void RAMInfo(String message, CallbackContext callbackContext){
+        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        MemoryInfo mi = new MemoryInfo();
+        activityManager.getMemoryInfo(mi);
+        String totalmem = mi.totalMem;
+        String availablemem = mi.availMem;
     }
 }
