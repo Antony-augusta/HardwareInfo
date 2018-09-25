@@ -90,12 +90,16 @@ public class HardwareInfo extends CordovaPlugin {
     private void RAMInfo(String message, CallbackContext callbackContext){
         long totalExternalValue = getTotalExternalMemorySize();
         long freeExternalValue = getAvailableExternalMemorySize();
+        long totalInternalValue = getTotalInternalMemorySize();
+        long freeInternalValue = getAvailableInternalMemorySize();
         long usedExternalValue = totalExternalValue - freeExternalValue;
         String output;
         try{
             JSONObject jsonobj = new JSONObject();
             jsonobj.put("totalExternalValue", ""+totalExternalValue);
             jsonobj.put("freeExternalValue", ""+freeExternalValue);
+            jsonobj.put("totalInternalValue", "" + totalInternalValue);
+            jsonobj.put("freeInternalValue", "" + freeInternalValue);
             output = jsonobj.toString();
         }
         catch(Exception ex){
