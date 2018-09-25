@@ -183,7 +183,7 @@ public class HardwareInfo extends CordovaPlugin {
                 BufferedReader br = new BufferedReader(new FileReader(new File("/proc/cpuinfo")));
                 String aLine;
                 while ((aLine = br.readLine()) != null) {
-                    sb.append(aLine + "\n");
+                    sb.append(aLine + "<br>\n");
                 }
                 if (br != null) {
                     br.close();
