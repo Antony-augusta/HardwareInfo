@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>HardwareInfo</name>
     <js-module name="HardwareInfo" src="www/HardwareInfo.js">
-        <clobbers target="cordova.plugins.HardwareInfo" />
+        <clobbers target="HardwareInfo" />
     </js-module>
     <platform name="ios">
         <config-file parent="/*" target="config.xml">
