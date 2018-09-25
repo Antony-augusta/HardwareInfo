@@ -92,10 +92,15 @@ public class HardwareInfo extends CordovaPlugin {
         long freeExternalValue = getAvailableExternalMemorySize();
         long usedExternalValue = totalExternalValue - freeExternalValue;
         String output;
-        JSONObject json = new JSONObject();
-        json.put("totalExternalValue", totalExternalValue);
-        json.put("freeExternalValue", freeExternalValue);
-        output = json.toString();
+        try{
+            JSONObject jsonobj = new JSONObject();
+            jsonobj.put("totalExternalValue", ""+totalExternalValue);
+            jsonobj.put("freeExternalValue", ""+freeExternalValue);
+            output = jsonobj.toString();
+        }
+        catch(Exception ex){
+            output = ex +"";
+        }
         callbackContext.success(output);
     }
     
