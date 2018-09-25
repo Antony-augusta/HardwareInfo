@@ -1,0 +1,27 @@
+{
+  "name": "HardwareInfo",
+  "version": "1.0.0",
+  "description": "getting device hardwareinfo",
+  "cordova": {
+    "id": "cordova-plugin-hardwareinfo",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antony-augusta/HardwareInfo.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "author": "Antony Arul Raj A",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Antony-augusta/HardwareInfo/issues"
+  },
+  "homepage": "https://github.com/Antony-augusta/HardwareInfo#readme"
+}

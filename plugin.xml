@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-hardwareinfo" version="1.0.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>HardwareInfo</name>
+    <js-module name="HardwareInfo" src="www/HardwareInfo.js">
+        <clobbers target="cordova.plugins.HardwareInfo" />
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="HardwareInfo">
+                <param name="ios-package" value="HardwareInfo" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/HardwareInfo.m" />
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="HardwareInfo">
+                <param name="android-package" value="cordova.plugin.hardwareinfo.HardwareInfo" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/HardwareInfo.java" target-dir="src/cordova/plugin/hardwareinfo/HardwareInfo" />
+    </platform>
+</plugin>
