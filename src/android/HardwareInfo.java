@@ -36,8 +36,33 @@ public class HardwareInfo extends CordovaPlugin {
     }
     
     private void CPUInfo(String message, CallbackContext callbackContext) {
+        ProcessBuilder processBuilder;
+        String Holder = "";
+        String[] DATA = { "/system/bin/cat", "/proc/cpuinfo" };
+        InputStream inputStream;
+        Process process;
+        byte[] byteArry;
+
         if (message != null && message.length() > 0) {
-            callbackContext.success("Hello world");
+            try{
+                processBuilder = new ProcessBuilder(DATA);
+
+                process = processBuilder.start();
+
+                inputStream = process.getInputStream();
+
+                while (inputStream.read(byteArry) != -1) {
+
+                    Holder = Holder + new String(byteArry);
+                }
+
+                inputStream.close();
+
+            }
+            catch (IOException ex) {
+                callbackContext.error("Error . "+ ex);
+            }
+            callbackContext.success(Holder);
         } else {
             callbackContext.error("Expected one non-empty string argument.");
         }
