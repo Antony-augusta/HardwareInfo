@@ -8,7 +8,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
-import android.support.v7.app.AppCompatActivity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.MemoryInfo;
 
@@ -79,7 +78,7 @@ public class HardwareInfo extends CordovaPlugin {
         }
     }
     private void RAMInfo(String message, CallbackContext callbackContext){
-        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        ActivityManager activityManager = (ActivityManager) getSystemService("activity");
         MemoryInfo mi = new MemoryInfo();
         activityManager.getMemoryInfo(mi);
         String totalmem = mi.totalMem;
