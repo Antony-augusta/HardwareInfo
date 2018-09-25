@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import android.os.Build;
 import java.io.IOException;
+import java.io.FileReader;
 
 /**
  * This class echoes a string called from JavaScript.
