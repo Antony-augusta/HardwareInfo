@@ -19,12 +19,25 @@ public class HardwareInfo extends CordovaPlugin {
             this.coolMethod(message, callbackContext);
             return true;
         }
+        else if (action.equals("CPUInfo")) {
+            String message = args.getString(0);
+            this.CPUInfo(message, callbackContext);
+            return true;
+        }
         return false;
     }
 
     private void coolMethod(String message, CallbackContext callbackContext) {
         if (message != null && message.length() > 0) {
             callbackContext.success(message);
+        } else {
+            callbackContext.error("Expected one non-empty string argument.");
+        }
+    }
+    
+    private void CPUInfo(String message, CallbackContext callbackContext) {
+        if (message != null && message.length() > 0) {
+            callbackContext.success("Hello world");
         } else {
             callbackContext.error("Expected one non-empty string argument.");
         }
