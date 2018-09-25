@@ -46,6 +46,7 @@ public class HardwareInfo extends CordovaPlugin {
         byte[] byteArry;
 
         if (message != null && message.length() > 0) {
+            byteArry = new byte[1024];
             try{
                 processBuilder = new ProcessBuilder(DATA);
 
