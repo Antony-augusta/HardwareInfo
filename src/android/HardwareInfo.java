@@ -78,7 +78,7 @@ public class HardwareInfo extends CordovaPlugin {
         }
     }
     private void RAMInfo(String message, CallbackContext callbackContext){
-        String totalmem = Runtime.getRuntime().maxMemory();
+        long totalmem = Runtime.getRuntime().maxMemory();
         callbackContext.success(totalmem);
     }
 }
