@@ -177,13 +177,13 @@ public class HardwareInfo extends CordovaPlugin {
     
     private String getInfo() {
         StringBuffer sb = new StringBuffer();
-        sb.append("abi: ").append(Build.CPU_ABI).append("\n");
+        sb.append("<ul><li>Processor Type: ").append(Build.CPU_ABI).append("</li>\n");
         if (new File("/proc/cpuinfo").exists()) {
             try {
                 BufferedReader br = new BufferedReader(new FileReader(new File("/proc/cpuinfo")));
                 String aLine;
                 while ((aLine = br.readLine()) != null) {
-                    sb.append(aLine + "<br>\n");
+                    sb.append("<li>" + aLine + "</li>\n");
                 }
                 if (br != null) {
                     br.close();
