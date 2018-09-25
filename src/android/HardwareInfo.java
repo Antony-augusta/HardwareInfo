@@ -16,8 +16,12 @@ import android.app.ActivityManager.MemoryInfo;
  */
 public class HardwareInfo extends CordovaPlugin {
 
+    private Activity context;
+
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        context = new Activity();
+
         if (action.equals("coolMethod")) {
             String message = args.getString(0);
             this.coolMethod(message, callbackContext);
@@ -78,7 +82,10 @@ public class HardwareInfo extends CordovaPlugin {
         }
     }
     private void RAMInfo(String message, CallbackContext callbackContext){
-        long totalmem = Runtime.getRuntime().maxMemory();
-        callbackContext.success(""+totalmem);
+        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
+        activityManager.getMemoryInfo(mi);
+        long availableMegs = mi.availMem / 1048576L;
+        callbackContext.success("" + availableMegs);
     }
 }
