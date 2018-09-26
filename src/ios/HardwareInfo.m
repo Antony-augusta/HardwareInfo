@@ -48,8 +48,8 @@
 - (void)RAMInfo:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    uint64_t totalSpace = 0;
-    uint64_t totalFreeSpace = 0;
+    float totalSpace = 0;
+    float totalFreeSpace = 0;
     long physicalMemoryvalue = [[NSProcessInfo processInfo] physicalMemory];
     NSString *rammemory = [NSString stringWithFormat:@"%lld", ((physicalMemoryvalue/1024ll)/1024ll)];
     __autoreleasing NSError *error = nil;
@@ -64,8 +64,8 @@
         NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
         totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
         totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
-        totalstorage = [NSString stringWithFormat:@"%llu", (((totalSpace/1024ll)/1024ll)/1024ll)];
-        totalfreestorage = [NSString stringWithFormat:@"%llu", (((totalFreeSpace/1024ll)/1024ll)/1024ll)];
+        totalstorage = [NSString stringWithFormat:@"%.2f", (((totalSpace/1024)/1024)/1024)];
+        totalfreestorage = [NSString stringWithFormat:@"%.2f", (((totalFreeSpace/1024)/1024)/1024)];
         
     }
     else {
