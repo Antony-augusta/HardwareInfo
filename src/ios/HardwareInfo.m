@@ -48,7 +48,7 @@
     CDVPluginResult* pluginResult = nil;
     NSString* echo = [command.arguments objectAtIndex:0];
   long physicalMemoryvalue = [[NSProcessInfo processInfo] physicalMemory];
-    NSString rammemory = [NSString stringWithFormat:@"%ld", physicalMemoryvalue];
+    NSString *rammemory = [NSString stringWithFormat:@"%ld", physicalMemoryvalue];
 
     if (echo != nil && [echo length] > 0) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:rammemory];
