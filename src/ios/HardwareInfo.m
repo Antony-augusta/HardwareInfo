@@ -51,7 +51,7 @@
     uint64_t totalSpace = 0;
     uint64_t totalFreeSpace = 0;
     long physicalMemoryvalue = [[NSProcessInfo processInfo] physicalMemory];
-    NSString *rammemory = [NSString stringWithFormat:@"%ld", physicalMemoryvalue];
+    NSString *rammemory = [NSString stringWithFormat:@"%lld", ((physicalMemoryvalue/1024ll)/1024ll)];
     __autoreleasing NSError *error = nil;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[paths lastObject] error: &error];
@@ -64,8 +64,8 @@
         NSNumber *freeFileSystemSizeInBytes = [dictionary objectForKey:NSFileSystemFreeSize];
         totalSpace = [fileSystemSizeInBytes unsignedLongLongValue];
         totalFreeSpace = [freeFileSystemSizeInBytes unsignedLongLongValue];
-        totalstorage = [NSString stringWithFormat:@"%llu", ((totalSpace/1024ll)/1024ll)];
-        totalfreestorage = [NSString stringWithFormat:@"%llu", ((totalFreeSpace/1024ll)/1024ll)];
+        totalstorage = [NSString stringWithFormat:@"%llu", (((totalSpace/1024ll)/1024ll)/1024ll)];
+        totalfreestorage = [NSString stringWithFormat:@"%llu", (((totalFreeSpace/1024ll)/1024ll)/1024ll)];
         
     }
     else {
