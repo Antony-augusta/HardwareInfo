@@ -50,12 +50,9 @@
   long physicalMemoryvalue = [[NSProcessInfo processInfo] physicalMemory];
     NSString *rammemory = [NSString stringWithFormat:@"%ld", physicalMemoryvalue];
 
-    if (echo != nil && [echo length] > 0) {
+    
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:rammemory];
-    } else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-    }
-
+    
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
