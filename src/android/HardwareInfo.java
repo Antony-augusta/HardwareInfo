@@ -52,6 +52,11 @@ public class HardwareInfo extends CordovaPlugin {
             this.DeviceInfo(message, callbackContext);
             return true;
         }
+        else if (action.equals("DeviceName")) {
+            String message = args.getString(0);
+            this.DeviceName(message, callbackContext);
+            return true;
+        }
         return false;
     }
 
@@ -129,6 +134,28 @@ public class HardwareInfo extends CordovaPlugin {
             output = ex +"";
         }
         callbackContext.success(output);
+    }
+
+    private void DeviceName(String message, CallbackContext callbackContext){
+        String name = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                name = Settings.Global.getString(cordova.getActivity().getContentResolver(), "device_name");
+                Log.d(TAG, "device_name " + name);
+            }
+            if (name == null) {
+                name = Settings.Secure.getString(cordova.getActivity().getContentResolver(), "bluetooth_name");
+                Log.d(TAG, "bluetooth_name " + name);
+            }
+        } else {
+            BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            if (mBluetoothAdapter != null) {
+                name = mBluetoothAdapter.getName();
+                Log.d(TAG, "bluetooth adapter " + name);
+            }
+        }
+
+        callbackContext.success(name);
     }
     
     public static boolean externalMemoryAvailable() {

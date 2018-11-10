@@ -1,6 +1,7 @@
 /********* HardwareInfo.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
+#import "CDVDeviceName.h"
 
 @interface HardwareInfo : CDVPlugin {
   // Member variables go here.
@@ -66,6 +67,15 @@
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)DeviceName:(CDVInvokedUrlCommand*)command
+{
+    UIDevice* device = [UIDevice currentDevice];
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[device name]];
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }

@@ -15,3 +15,7 @@ module.exports.RAMInfo = function (arg0, success, error) {
 module.exports.DeviceInfo = function (arg0, success, error) {
     exec(success, error, 'HardwareInfo', 'DeviceInfo', [arg0]);
 };
+
+module.exports.DeviceName = function (arg0, success, error) {
+    exec(success, error, 'HardwareInfo', 'DeviceName', [arg0]);
+};
